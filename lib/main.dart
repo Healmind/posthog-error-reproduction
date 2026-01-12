@@ -54,32 +54,48 @@ class PostHogErrorReproduction extends StatefulWidget {
 }
 
 class _PostHogErrorReproductionState extends State<PostHogErrorReproduction> {
-  String _textValue = '';
+  String _email = '';
+
+  String? _usernameValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Email is required';
+    }
+    if (!value.contains('@')) {
+      return 'Please enter a valid email';
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('PostHog Masking Error Reproduction'),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(80.0.w),
-        child: CustomInputText(
-          title: 'Text',
-          colorCardHome: Colors.white,
-          isRequired: true,
-          onChanged: (value) {
-            setState(() {
-              _textValue = value;
-            });
-          },
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Text is required';
-            }
-            return null;
-          },
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                CustomInputText(
+                  title: 'Email',
+                  colorCardHome: Colors.grey[100]!,
+                  controllerText: _email,
+                  fieldKey: 'resend_activation_email',
+                  validator: _usernameValidator,
+                  onChanged: (value) {
+                    setState(() {
+                      _email = value;
+                    });
+                  },
+                  iconCardLogin: null,
+                  isRequired: false,
+                  readOnly: false,
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
