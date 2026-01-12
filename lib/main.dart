@@ -1,8 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:posthog_flutter/posthog_flutter.dart';
 import 'custom_input.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final config =
+  PostHogConfig('phc_WfjklKKDvnrWljNwlLIyxBgV46fpOiHiDb3L76FMSW9');
+  config.debug = true;
+  config.captureApplicationLifecycleEvents = true;
+  config.host = 'https://eu.i.posthog.com';
+  config.sessionReplay = true;
+  config.sessionReplayConfig.maskAllTexts = true;
+  config.sessionReplayConfig.maskAllImages = false;
+  config.sessionReplayConfig.throttleDelay =
+  const Duration(milliseconds: 300);
+  await Posthog().setup(config);
+  print('PostHog initialized');
+
+  await Posthog().capture(
+      eventName: 'test_event_error_capture',
+  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -10,14 +29,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'PostHog Error Reproduction',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const PostHogErrorReproduction(),
-    );
+    return PostHogWidget(
+        child: ScreenUtilInit(
+          designSize: const Size(360, 800),
+          minTextAdapt: true,
+          splitScreenMode: true,
+          builder: (context, state) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+              ),
+              home: const PostHogErrorReproduction(),
+            );
+          },
+        ));
   }
 }
 
@@ -39,7 +64,7 @@ class _PostHogErrorReproductionState extends State<PostHogErrorReproduction> {
         title: const Text('PostHog Masking Error Reproduction'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(80.0.w),
         child: CustomInputText(
           title: 'Text',
           colorCardHome: Colors.white,

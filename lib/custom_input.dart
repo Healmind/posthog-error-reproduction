@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomInputText extends StatefulWidget {
   const CustomInputText({
@@ -158,17 +159,17 @@ class _CustomInputTextState extends State<CustomInputText> {
           },
           child: Container(
             width: MediaQuery.of(context).size.width,
-            height: 56,
+            height: 56.h,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(10.r),
               color: Colors.grey[200],
             ),
             child: Padding(
-              padding: const EdgeInsets.only(
-                left: 16,
+              padding: EdgeInsets.only(
+                left: 16.w,
                 right: 0,
-                top: 4,
-                bottom: 4,
+                top: 4.h,
+                bottom: 4.h,
               ),
               child: Stack(
                 children: [
@@ -180,9 +181,9 @@ class _CustomInputTextState extends State<CustomInputText> {
                         child: RichText(
                           text: TextSpan(
                             text: widget.title,
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Colors.grey,
-                              fontSize: 12,
+                              fontSize: 12.sp,
                             ),
                             children: widget.isRequired
                                 ? [
@@ -198,7 +199,7 @@ class _CustomInputTextState extends State<CustomInputText> {
                       Expanded(
                         child: Container(
                           width: MediaQuery.of(context).size.width,
-                          margin: const EdgeInsets.only(bottom: 7),
+                          margin: EdgeInsets.only(bottom: 7.h),
                           child: TextFormField(
                             readOnly: widget.readOnly,
                             controller: _controller ??
@@ -216,7 +217,7 @@ class _CustomInputTextState extends State<CustomInputText> {
                               color: widget.isObscureText && _isObscureVisible
                                   ? Colors.grey
                                   : Colors.black,
-                              fontSize: 16,
+                              fontSize: 16.sp,
                             ),
                           ),
                         ),
@@ -225,8 +226,8 @@ class _CustomInputTextState extends State<CustomInputText> {
                   ),
                   if (widget.iconCardLogin != null)
                     Positioned(
-                      top: 9,
-                      right: 10,
+                      top: 9.h,
+                      right: 10.w,
                       child: GestureDetector(
                         onTap: () async {
                           if (widget.iconCalendar) {
@@ -258,26 +259,26 @@ class _CustomInputTextState extends State<CustomInputText> {
         ),
         if (_errorMessage != null && _errorMessage!.isNotEmpty)
           Padding(
-            padding: const EdgeInsets.only(
-              left: 16,
-              top: 4,
+            padding: EdgeInsets.only(
+              left: 16.w,
+              top: 4.h,
             ),
             child: Text(
               _errorMessage!,
-              style: const TextStyle(color: Colors.red, fontSize: 11),
+              style: TextStyle(color: Colors.red, fontSize: 11.sp),
             ),
           ),
         if (_errorMessage == null && widget.successMessage != null)
           Padding(
-            padding: const EdgeInsets.only(
-              left: 16,
-              top: 4,
+            padding: EdgeInsets.only(
+              left: 16.w,
+              top: 4.h,
             ),
             child: Text(
               widget.successMessage!,
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.green,
-                fontSize: 11,
+                fontSize: 11.sp,
                 fontWeight: FontWeight.w400,
               ),
             ),

@@ -1,0 +1,30 @@
+PODS:
+  - Flutter (1.0.0)
+  - PostHog (3.36.2)
+  - posthog_flutter (0.0.1):
+    - Flutter
+    - FlutterMacOS
+    - PostHog (< 4.0.0, >= 3.32.0)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - posthog_flutter (from `.symlinks/plugins/posthog_flutter/ios`)
+
+SPEC REPOS:
+  trunk:
+    - PostHog
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  posthog_flutter:
+    :path: ".symlinks/plugins/posthog_flutter/ios"
+
+SPEC CHECKSUMS:
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  PostHog: 43ba4f42cc8dda909b33033e9ba0a1f64a2a8eb2
+  posthog_flutter: 9535ac2d4ab65ccb9ace3886dcc0b3105198bad5
+
+PODFILE CHECKSUM: 4e3db05175e1bbfaa9a6f2ea7a8934a812d864e3
+
+COCOAPODS: 1.16.2
