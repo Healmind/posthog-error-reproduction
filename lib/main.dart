@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return PostHogWidget(
         child: ScreenUtilInit(
-          designSize: const Size(360, 800),
+          designSize: const Size(200,800),
           minTextAdapt: true,
           splitScreenMode: true,
           builder: (context, state) {
